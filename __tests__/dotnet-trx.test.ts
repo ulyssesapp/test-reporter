@@ -64,7 +64,8 @@ describe('dotnet-trx tests', () => {
       listSuites: 'all',
       listTests: 'failed',
       onlySummary: false,
-      baseUrl: ''
+      baseUrl: '',
+      skipSuiteSummary: false
     }
     const report = getReport([result], reportOptions)
     fs.mkdirSync(path.dirname(outputPath), {recursive: true})

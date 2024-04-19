@@ -119,7 +119,8 @@ describe('java-junit tests', () => {
       listSuites: 'failed',
       listTests: 'failed',
       baseUrl: '',
-      onlySummary: false
+      onlySummary: false,
+      skipSuiteSummary: true
     }
 
     const report = getReport(results, reportOpts)

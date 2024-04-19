@@ -3,12 +3,6 @@
 |:---|---:|---:|---:|---:|
 |[fixtures/empty-groups.xml](#r0)|122✅|6❌||3m 7s|
 |fixtures/successful.xml|122✅|||3m 7s|
-## ❌ <a id="user-content-r0" href="#r0">fixtures/empty-groups.xml</a>
-**128** tests were completed in **3m 7s** with **122** passed, **6** failed and **0** skipped.
-|Test suite|Passed|Failed|Skipped|Time|
-|:---|---:|---:|---:|---:|
-|[Services Tests.xctest](#r0s0)|122✅|6❌||2m 53s|
-### ❌ <a id="user-content-r0s0" href="#r0s0">Services Tests.xctest</a>
 ```
 ULAnalyticsProviderTest
   ❌ testCollectsForMultipleWeeks

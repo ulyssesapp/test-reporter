@@ -11,14 +11,16 @@ export interface ReportOptions {
   listSuites: 'all' | 'failed'
   listTests: 'all' | 'failed' | 'none'
   baseUrl: string
-  onlySummary: boolean
+  onlySummary: boolean,
+  skipSuiteSummary: boolean
 }
 
 const defaultOptions: ReportOptions = {
   listSuites: 'all',
   listTests: 'all',
   baseUrl: '',
-  onlySummary: false
+  onlySummary: false,
+  skipSuiteSummary: false
 }
 
 export function getReport(results: TestRunResult[], options: ReportOptions = defaultOptions): string {
@@ -169,20 +171,22 @@ function getSuitesReport(tr: TestRunResult, runIndex: number, options: ReportOpt
     return sections
   }
 
-  const trSlug = makeRunSlug(runIndex)
-  const nameLink = `<a id="${trSlug.id}" href="${options.baseUrl + trSlug.link}">${tr.path}</a>`
-  const icon = getResultIcon(tr.result)
-  sections.push(`## ${icon}\xa0${nameLink}`)
+  if (!options.skipSuiteSummary) {
+    const trSlug = makeRunSlug(runIndex)
+    const nameLink = `<a id="${trSlug.id}" href="${options.baseUrl + trSlug.link}">${tr.path}</a>`
+    const icon = getResultIcon(tr.result)
+    sections.push(`## ${icon}\xa0${nameLink}`)
 
-  const time = formatTime(tr.time)
-  const headingLine2 =
-    tr.tests > 0
-      ? `**${tr.tests}** tests were completed in **${time}** with **${tr.passed}** passed, **${tr.failed}** failed and **${tr.skipped}** skipped.`
-      : 'No tests found'
-  sections.push(headingLine2)
+    const time = formatTime(tr.time)
+    const headingLine2 =
+      tr.tests > 0
+        ? `**${tr.tests}** tests were completed in **${time}** with **${tr.passed}** passed, **${tr.failed}** failed and **${tr.skipped}** skipped.`
+        : 'No tests found'
+    sections.push(headingLine2)
+  }
 
   const suites = options.listSuites === 'failed' ? tr.failedSuites : tr.suites
-  if (suites.length > 0) {
+  if (!options.skipSuiteSummary && suites.length > 0) {
     const suitesTable = table(
       ['Test suite', 'Passed', 'Failed', 'Skipped', 'Time'],
       [Align.Left, Align.Right, Align.Right, Align.Right, Align.Right],
@@ -223,11 +227,13 @@ function getTestsReport(ts: TestSuiteResult, runIndex: number, suiteIndex: numbe
 
   const sections: string[] = []
 
-  const tsName = ts.name
-  const tsSlug = makeSuiteSlug(runIndex, suiteIndex)
-  const tsNameLink = `<a id="${tsSlug.id}" href="${options.baseUrl + tsSlug.link}">${tsName}</a>`
-  const icon = getResultIcon(ts.result)
-  sections.push(`### ${icon}\xa0${tsNameLink}`)
+  if (!options.skipSuiteSummary) {
+    const tsName = ts.name
+    const tsSlug = makeSuiteSlug(runIndex, suiteIndex)
+    const tsNameLink = `<a id="${tsSlug.id}" href="${options.baseUrl + tsSlug.link}">${tsName}</a>`
+    const icon = getResultIcon(ts.result)
+    sections.push(`### ${icon}\xa0${tsNameLink}`)
+  }
 
   sections.push('```')
   for (const grp of groups) {

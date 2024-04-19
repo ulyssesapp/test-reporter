@@ -44,6 +44,7 @@ class TestReporter {
   readonly failOnEmpty = core.getInput('fail-on-empty', {required: true}) === 'true'
   readonly workDirInput = core.getInput('working-directory', {required: false})
   readonly onlySummary = core.getInput('only-summary', {required: false}) === 'true'
+  readonly skipSuiteSummary = core.getInput('skip-suite-summary:', {required: false}) === 'true'
   readonly token = core.getInput('token', {required: true})
   readonly octokit: InstanceType<typeof GitHub>
   readonly context = getCheckRunContext()
@@ -174,7 +175,7 @@ class TestReporter {
     })
 
     core.info('Creating report summary')
-    const {listSuites, listTests, onlySummary} = this
+    const {listSuites, listTests, onlySummary, skipSuiteSummary} = this
     const baseUrl = createResp.data.html_url as string
     const summary = getReport(results, {listSuites, listTests, baseUrl, onlySummary})
 

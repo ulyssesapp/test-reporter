@@ -227,6 +227,10 @@ function getTestsReport(ts: TestSuiteResult, runIndex: number, suiteIndex: numbe
 
   sections.push('```')
   for (const grp of groups) {
+    if (options.listSuites === 'failed' && grp.result !== 'failed') {
+      continue
+    }
+
     if (grp.name) {
       sections.push(grp.name)
     }

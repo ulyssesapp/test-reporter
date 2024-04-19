@@ -3,7 +3,7 @@ import * as path from 'path'
 
 import {JavaJunitParser} from '../src/parsers/java-junit/java-junit-parser'
 import {ParseOptions} from '../src/test-parser'
-import {getReport} from '../src/report/get-report'
+import {getReport, ReportOptions} from '../src/report/get-report'
 import {normalizeFilePath} from '../src/utils/path-utils'
 
 describe('java-junit tests', () => {
@@ -89,5 +89,34 @@ describe('java-junit tests', () => {
 
     expect(result.result === 'failed')
     expect(result.failed === 1)
+  })
+
+  it('does not create reports with emtpty gorups', async () => {
+    const fixturePath = path.join(__dirname, 'fixtures', 'empty-groups.xml')
+    const filePath = normalizeFilePath(path.relative(__dirname, fixturePath))
+    const outputPath = path.join(__dirname, '__outputs__', 'empty-groups.md')
+    const fileContent = fs.readFileSync(fixturePath, {encoding: 'utf8'})
+
+    const trackedFiles: string[] = []
+    const opts: ParseOptions = {
+      parseErrors: true,
+      trackedFiles
+    }
+
+    const parser = new JavaJunitParser(opts)
+    const result = await parser.parse(filePath, fileContent)
+    expect(result.result === 'failed')
+    expect(result.failed === 1)
+
+    const reportOpts: ReportOptions = {
+      listSuites: 'failed',
+      listTests: 'failed',
+      baseUrl: '',
+      onlySummary: false
+    }
+
+    const report = getReport([result], reportOpts)
+    fs.mkdirSync(path.dirname(outputPath), {recursive: true})
+    fs.writeFileSync(outputPath, report)
   })
 })

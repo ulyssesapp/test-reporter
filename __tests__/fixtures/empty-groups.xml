@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="128" failures="6" time="186.991">
+    <testsuite name="Services Tests.xctest" tests="128" failures="6" time="172.8825">
+        <testcase name="testCalculatingSendOffset" time="0.0457" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testClearingTrackedFeaturesWhenDisablingSendAnalytics" time="2.0572" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testCollectingAnalytics" time="0.1267" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testCollectingAnalyticsWithoutActivation" time="0.1218" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testCollectingTrackedFeatures" time="0.118" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testCollectingTrackedFeaturesOverMultipleWeeks" time="0.1333" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testCollectsForMultipleWeeks" time="15.2937" classname="ULAnalyticsProviderTest">
+            <failure>failed (/Users/agent/Services/github-runner-wendy-3/_work/ulysses-4/ulysses-4/Tests/Services/ULAnalyticsProviderTest.m:155)</failure>
+        </testcase>
+        <testcase name="testCollectsOnScheduledDate" time="2.0573" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testLimitNumberOfUnsentItems" time="0.7324" classname="ULAnalyticsProviderTest">
+            <failure>((ULAnalyticsProvider.pendingAnalytics.count) equal to (10UL)) failed: ("0") is not equal to ("10") (/Users/agent/Services/github-runner-wendy-3/_work/ulysses-4/ulysses-4/Tests/Services/ULAnalyticsProviderTest.m:544)</failure>
+        </testcase>
+        <testcase name="testReschedulesAfterCollection" time="15.128" classname="ULAnalyticsProviderTest">
+            <failure>failed (/Users/agent/Services/github-runner-wendy-3/_work/ulysses-4/ulysses-4/Tests/Services/ULAnalyticsProviderTest.m:109)</failure>
+        </testcase>
+        <testcase name="testRetryAfterFailure" time="16.5016" classname="ULAnalyticsProviderTest">
+            <failure>failed (/Users/agent/Services/github-runner-wendy-3/_work/ulysses-4/ulysses-4/Tests/Services/ULAnalyticsProviderTest.m:522)</failure>
+        </testcase>
+        <testcase name="testSchedulesWeeklyCollection" time="0.0549" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testSendingToRealServer" time="0.201" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testSendingToRealServerTwice" time="0.3807" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testSendsAllPendingData" time="17.1945" classname="ULAnalyticsProviderTest">
+            <failure>((ULAnalyticsProvider.pendingAnalytics.count) equal to (2UL)) failed: ("0") is not equal to ("2") (/Users/agent/Services/github-runner-wendy-3/_work/ulysses-4/ulysses-4/Tests/Services/ULAnalyticsProviderTest.m:489)</failure>
+        </testcase>
+        <testcase name="testSendsCollectedData" time="0.0773" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testSendsCollectedDataWithOffset" time="15.0793" classname="ULAnalyticsProviderTest">
+            <failure>failed (/Users/agent/Services/github-runner-wendy-3/_work/ulysses-4/ulysses-4/Tests/Services/ULAnalyticsProviderTest.m:422)</failure>
+        </testcase>
+        <testcase name="testTogglingAnalyticsAllowance" time="2.169" classname="ULAnalyticsProviderTest"/>
+        <testcase name="testAppFeatureTracker" time="0.0365" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testConditionFeatureTracking" time="1.0314" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testFeatureProviderRegistration" time="0.0253" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testFeatureTrackerRegistration" time="0.014" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testFeatureTrackerRestoration" time="0.0121" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testFeatureTrackingDisabled" time="0.0177" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testFeatureTrackingDisabledFromPreferenceStore" time="0.0098" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testLoadingFeaturesFromFutureVersion" time="0.0053" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testMultipleFeatureTracking" time="1.0421" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testVariadicTrackingMacro" time="0.0232" classname="ULAppFeatureTrackerTest"/>
+        <testcase name="testMultipleUserActions" time="0.0388" classname="ULAppStoreReviewModelTest"/>
+        <testcase name="testUserActionsOverMultipleDays" time="0.0346" classname="ULAppStoreReviewModelTest"/>
+        <testcase name="testUserActionWithMaximumLifetime" time="0.0293" classname="ULAppStoreReviewModelTest"/>
+        <testcase name="testWaitingPeriod" time="0.0352" classname="ULAppStoreReviewModelTest"/>
+        <testcase name="testDispatchEventsInFIFOOrder" time="0.0258" classname="ULAppleEventManagerTest"/>
+        <testcase name="testDispatchEventsWhenNotSuspended" time="0.0181" classname="ULAppleEventManagerTest"/>
+        <testcase name="testDontEnqueueEventsWhenNotSuspended" time="0.0413" classname="ULAppleEventManagerTest"/>
+        <testcase name="testDontReceiveEventsUntilResumed" time="0.0211" classname="ULAppleEventManagerTest"/>
+        <testcase name="testRejectUnsupportedEventClasses" time="0.0187" classname="ULAppleEventManagerTest"/>
+        <testcase name="testSeparatelySuspendEventClasses" time="0.022" classname="ULAppleEventManagerTest"/>
+        <testcase name="testThrowOnInvalidSuspendOrResume" time="0.0191" classname="ULAppleEventManagerTest"/>
+        <testcase name="testThrowWhenDispatchingWithoutEventHandler" time="0.0245" classname="ULAppleEventManagerTest"/>
+        <testcase name="testAccessingBackups" time="0.3445" classname="ULBackupTest"/>
+        <testcase name="testAddingBackupsExternally" time="2.3178" classname="ULBackupTest"/>
+        <testcase name="testAutomatedBackups" time="3.7041" classname="ULBackupTest"/>
+        <testcase name="testBackupOrder" time="0.6996" classname="ULBackupTest"/>
+        <testcase name="testBackupSettings" time="0.1137" classname="ULBackupTest"/>
+        <testcase name="testCancelBackupAtBeginning" time="1.9453" classname="ULBackupTest"/>
+        <testcase name="testCancelBackupBeforeShouldCancel" time="1.7763" classname="ULBackupTest"/>
+        <testcase name="testCancelBackupWhilePerformingBackup" time="2.6552" classname="ULBackupTest"/>
+        <testcase name="testCleaningIncompleteBackups" time="0.4438" classname="ULBackupTest"/>
+        <testcase name="testCleaningOutdatedBackups" time="2.3053" classname="ULBackupTest"/>
+        <testcase name="testCoveredLibraries" time="0.3318" classname="ULBackupTest"/>
+        <testcase name="testCreatingBackups" time="3.2054" classname="ULBackupTest"/>
+        <testcase name="testCreatingBackupsWithSubsequentDifferences" time="7.0582" classname="ULBackupTest"/>
+        <testcase name="testCreatingBackupWithManyDifferences" time="1.6653" classname="ULBackupTest"/>
+        <testcase name="testDefaultBackupSetup" time="0.0512" classname="ULBackupTest"/>
+        <testcase name="testDeletedProjects" time="0.5761" classname="ULBackupTest"/>
+        <testcase name="testDeletingBackupManually" time="7.5167" classname="ULBackupTest"/>
+        <testcase name="testDeletingBackupsExternally" time="3.1053" classname="ULBackupTest"/>
+        <testcase name="testExternallyDeletingBackupStore" time="4.0742" classname="ULBackupTest"/>
+        <testcase name="testExternallyMovingBackupStore" time="2.5236" classname="ULBackupTest"/>
+        <testcase name="testExternallyReplacingBackupStore" time="2.2169" classname="ULBackupTest"/>
+        <testcase name="testGettingAvailabileBackups" time="0.5475" classname="ULBackupTest"/>
+        <testcase name="testHandlingAutomatedBackupErrors" time="0.1882" classname="ULBackupTest"/>
+        <testcase name="testHandlingLoadingErrors" time="0.2788" classname="ULBackupTest"/>
+        <testcase name="testHandlingManualBackupErrors" time="0.0901" classname="ULBackupTest"/>
+        <testcase name="testImportingBackup" time="0.3984" classname="ULBackupTest"/>
+        <testcase name="testInitializingBackupStore" time="0.065" classname="ULBackupTest"/>
+        <testcase name="testKeepingLockedBackups" time="0.9757" classname="ULBackupTest"/>
+        <testcase name="testManualBackups" time="8.0544" classname="ULBackupTest"/>
+        <testcase name="testPersistentObjects" time="0.5007" classname="ULBackupTest"/>
+        <testcase name="testPersistSettingPreventionForAutomatedDeletion" time="0.3327" classname="ULBackupTest"/>
+        <testcase name="testPresentingBackups" time="0.5019" classname="ULBackupTest"/>
+        <testcase name="testReadingExistingBackups" time="3.1138" classname="ULBackupTest"/>
+        <testcase name="testReadingUnknownStorageType" time="0.6915" classname="ULBackupTest"/>
+        <testcase name="testRenamingOfInvalidBackupFiles" time="0.2833" classname="ULBackupTest"/>
+        <testcase name="testRequestAvailableModelActions" time="0.4641" classname="ULBackupTest"/>
+        <testcase name="testRestoreContainerNode" time="0.4715" classname="ULBackupTest"/>
+        <testcase name="testRestoreProjectContainerNodes" time="0.8909" classname="ULBackupTest"/>
+        <testcase name="testRestoreProjectNode" time="0.6597" classname="ULBackupTest"/>
+        <testcase name="testRestoreTargetContainerNode" time="0.2912" classname="ULBackupTest"/>
+        <testcase name="testSkippingIdenticalBackups" time="7.9917" classname="ULBackupTest"/>
+        <testcase name="testSubsequentBackupShouldCloneIdenticalFiles" time="1.0229" classname="ULBackupTest"/>
+        <testcase name="testSystemBackupOfLatestAndManualBackups" time="3.0474" classname="ULBackupTest"/>
+        <testcase name="testUpdatingModelTreeForBackups" time="0.5671" classname="ULBackupTest"/>
+        <testcase name="testEnablingAnalyticsWhileTracking" time="0.0131" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testEventTrackingWithFaultyDurations" time="0.0051" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testEventTrackingWithFaultyHistogramData" time="0.0062" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testEventTrackingWithRealDateSource" time="2.0105" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testQueryingIdentifiersWithNoEventsRecorded" time="0.0222" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testQueryingIdentifiersWithUnpairedEventsRecorded" time="0.0108" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testSkipAndClearTrackingIfAnalyticsDisabled" time="0.0139" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testTrackingMultipleEventsWithContext" time="0.0093" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testTrackingMultipleEventsWithEvenDistribution" time="0.0089" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testTrackingMultipleEventsWithOddDistribution" time="0.0078" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testTrackingMultipleEventsWithSameDuration" time="0.0096" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testTrackingSingleEventOccurrence" time="0.0055" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testUsingProductionTracker" time="0.0065" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testUsingTestTracker" time="0.0049" classname="ULPerformanceTrackerTest"/>
+        <testcase name="testDoNotNotifyOnFirstLaunch" time="0.0196" classname="ULProductNewsControllerTest"/>
+        <testcase name="testDoNotNotifyWithoutVersionChange" time="0.0196" classname="ULProductNewsControllerTest"/>
+        <testcase name="testForceNotify" time="0.0206" classname="ULProductNewsControllerTest"/>
+        <testcase name="testNotifyAfterLargeVersionChange" time="0.0198" classname="ULProductNewsControllerTest"/>
+        <testcase name="testNotifyAfterVersionChange" time="0.0197" classname="ULProductNewsControllerTest"/>
+        <testcase name="testNotifyOnNormalLaunch" time="0.0188" classname="ULProductNewsControllerTest"/>
+        <testcase name="testConvertingRTFEnumeration" time="0.0222" classname="ULShareItemConverterTest"/>
+        <testcase name="testEmptyInputItems" time="0.0201" classname="ULShareItemConverterTest"/>
+        <testcase name="testFallbackTextInputItem" time="0.0214" classname="ULShareItemConverterTest"/>
+        <testcase name="testImageAsData" time="0.0412" classname="ULShareItemConverterTest"/>
+        <testcase name="testImageAsFileReference" time="0.0201" classname="ULShareItemConverterTest"/>
+        <testcase name="testImageAsURL" time="0.0195" classname="ULShareItemConverterTest"/>
+        <testcase name="testImageInputItem" time="0.0198" classname="ULShareItemConverterTest"/>
+        <testcase name="testImportingRTFAttachment" time="0.0345" classname="ULShareItemConverterTest"/>
+        <testcase name="testInvalidInputItems" time="0.0187" classname="ULShareItemConverterTest"/>
+        <testcase name="testMultipleImages" time="0.0222" classname="ULShareItemConverterTest"/>
+        <testcase name="testMultipleTexts" time="0.0206" classname="ULShareItemConverterTest"/>
+        <testcase name="testMultipleURLs" time="0.0188" classname="ULShareItemConverterTest"/>
+        <testcase name="testNoFallbackTextInputItemSameContent" time="0.0213" classname="ULShareItemConverterTest"/>
+        <testcase name="testPDFAsURL" time="0.0182" classname="ULShareItemConverterTest"/>
+        <testcase name="testTextAsURLInputItem" time="0.0186" classname="ULShareItemConverterTest"/>
+        <testcase name="testTextInputItem" time="0.019" classname="ULShareItemConverterTest"/>
+        <testcase name="testTextWithImages" time="0.023" classname="ULShareItemConverterTest"/>
+        <testcase name="testURLAsData" time="0.0184" classname="ULShareItemConverterTest"/>
+        <testcase name="testURLInputItem" time="0.0198" classname="ULShareItemConverterTest"/>
+        <testcase name="testURLWithEmptyText" time="0.0202" classname="ULShareItemConverterTest"/>
+        <testcase name="testURLWithLongText" time="0.0203" classname="ULShareItemConverterTest"/>
+        <testcase name="testURLWithLongTextAndImages" time="0.0247" classname="ULShareItemConverterTest"/>
+        <testcase name="testURLWithShortText" time="0.0196" classname="ULShareItemConverterTest"/>
+        <testcase name="testURLWithShortTextAndImage" time="0.0215" classname="ULShareItemConverterTest"/>
+    </testsuite>
+</testsuites>

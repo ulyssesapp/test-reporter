@@ -297,6 +297,7 @@ class TestReporter {
         this.failOnEmpty = core.getInput('fail-on-empty', { required: true }) === 'true';
         this.workDirInput = core.getInput('working-directory', { required: false });
         this.onlySummary = core.getInput('only-summary', { required: false }) === 'true';
+        this.skipSuiteSummary = core.getInput('skip-suite-summary:', { required: false }) === 'true';
         this.token = core.getInput('token', { required: true });
         this.context = (0, github_utils_1.getCheckRunContext)();
         this.octokit = github.getOctokit(this.token);
@@ -396,9 +397,9 @@ class TestReporter {
                     summary: ''
                 } }, github.context.repo));
             core.info('Creating report summary');
-            const { listSuites, listTests, onlySummary } = this;
+            const { listSuites, listTests, onlySummary, skipSuiteSummary } = this;
             const baseUrl = createResp.data.html_url;
-            const summary = (0, get_report_1.getReport)(results, { listSuites, listTests, baseUrl, onlySummary });
+            const summary = (0, get_report_1.getReport)(results, { listSuites, listTests, baseUrl, onlySummary, skipSuiteSummary });
             core.info('Creating annotations');
             const annotations = (0, get_annotations_1.getAnnotations)(results, this.maxAnnotations);
             const isFailed = this.failOnError && results.some(tr => tr.result === 'failed');
@@ -1670,7 +1671,8 @@ const defaultOptions = {
     listSuites: 'all',
     listTests: 'all',
     baseUrl: '',
-    onlySummary: false
+    onlySummary: false,
+    skipSuiteSummary: false
 };
 function getReport(results, options = defaultOptions) {
     core.info('Generating check run summary');
@@ -1773,7 +1775,7 @@ function getTestRunsReport(testRuns, options) {
             const time = (0, markdown_utils_1.formatTime)(tr.time);
             const name = tr.path;
             const addr = options.baseUrl + makeRunSlug(runIndex).link;
-            const nameLink = (0, markdown_utils_1.link)(name, addr);
+            const nameLink = options.listSuites === 'failed' && tr.result !== 'failed' ? name : (0, markdown_utils_1.link)(name, addr);
             const passed = tr.passed > 0 ? `${tr.passed}${markdown_utils_1.Icon.success}` : '';
             const failed = tr.failed > 0 ? `${tr.failed}${markdown_utils_1.Icon.fail}` : '';
             const skipped = tr.skipped > 0 ? `${tr.skipped}${markdown_utils_1.Icon.skip}` : '';
@@ -1790,17 +1792,22 @@ function getTestRunsReport(testRuns, options) {
 }
 function getSuitesReport(tr, runIndex, options) {
     const sections = [];
-    const trSlug = makeRunSlug(runIndex);
-    const nameLink = `<a id="${trSlug.id}" href="${options.baseUrl + trSlug.link}">${tr.path}</a>`;
-    const icon = getResultIcon(tr.result);
-    sections.push(`## ${icon}\xa0${nameLink}`);
-    const time = (0, markdown_utils_1.formatTime)(tr.time);
-    const headingLine2 = tr.tests > 0
-        ? `**${tr.tests}** tests were completed in **${time}** with **${tr.passed}** passed, **${tr.failed}** failed and **${tr.skipped}** skipped.`
-        : 'No tests found';
-    sections.push(headingLine2);
+    if (options.listSuites === 'failed' && tr.result !== 'failed') {
+        return sections;
+    }
+    if (!options.skipSuiteSummary) {
+        const trSlug = makeRunSlug(runIndex);
+        const nameLink = `<a id="${trSlug.id}" href="${options.baseUrl + trSlug.link}">${tr.path}</a>`;
+        const icon = getResultIcon(tr.result);
+        sections.push(`## ${icon}\xa0${nameLink}`);
+        const time = (0, markdown_utils_1.formatTime)(tr.time);
+        const headingLine2 = tr.tests > 0
+            ? `**${tr.tests}** tests were completed in **${time}** with **${tr.passed}** passed, **${tr.failed}** failed and **${tr.skipped}** skipped.`
+            : 'No tests found';
+        sections.push(headingLine2);
+    }
     const suites = options.listSuites === 'failed' ? tr.failedSuites : tr.suites;
-    if (suites.length > 0) {
+    if (!options.skipSuiteSummary && suites.length > 0) {
         const suitesTable = (0, markdown_utils_1.table)(['Test suite', 'Passed', 'Failed', 'Skipped', 'Time'], [markdown_utils_1.Align.Left, markdown_utils_1.Align.Right, markdown_utils_1.Align.Right, markdown_utils_1.Align.Right, markdown_utils_1.Align.Right], ...suites.map((s, suiteIndex) => {
             const tsTime = (0, markdown_utils_1.formatTime)(s.time);
             const tsName = s.name;
@@ -1832,18 +1839,26 @@ function getTestsReport(ts, runIndex, suiteIndex, options) {
         return [];
     }
     const sections = [];
-    const tsName = ts.name;
-    const tsSlug = makeSuiteSlug(runIndex, suiteIndex);
-    const tsNameLink = `<a id="${tsSlug.id}" href="${options.baseUrl + tsSlug.link}">${tsName}</a>`;
-    const icon = getResultIcon(ts.result);
-    sections.push(`### ${icon}\xa0${tsNameLink}`);
+    if (!options.skipSuiteSummary) {
+        const tsName = ts.name;
+        const tsSlug = makeSuiteSlug(runIndex, suiteIndex);
+        const tsNameLink = `<a id="${tsSlug.id}" href="${options.baseUrl + tsSlug.link}">${tsName}</a>`;
+        const icon = getResultIcon(ts.result);
+        sections.push(`### ${icon}\xa0${tsNameLink}`);
+    }
     sections.push('```');
     for (const grp of groups) {
+        if (options.listSuites === 'failed' && grp.result !== 'failed') {
+            continue;
+        }
         if (grp.name) {
             sections.push(grp.name);
         }
         const space = grp.name ? '  ' : '';
         for (const tc of grp.tests) {
+            if (options.listTests === 'failed' && tc.result !== 'failed') {
+                continue;
+            }
             const result = getResultIcon(tc.result);
             sections.push(`${space}${result} ${tc.name}`);
             if (tc.error) {
@@ -2271,10 +2286,17 @@ function ellipsis(text, maxLength) {
 }
 exports.ellipsis = ellipsis;
 function formatTime(ms) {
-    if (ms > 1000) {
-        return `${Math.round(ms / 1000)}s`;
+    ms = Math.round(ms);
+    if (ms < 1000) {
+        return `${ms}ms`;
     }
-    return `${Math.round(ms)}ms`;
+    var seconds = Math.round(ms / 1000);
+    if (seconds < 60) {
+        return `${seconds}s`;
+    }
+    var minutes = Math.floor(seconds / 60);
+    seconds = seconds % 60;
+    return `${minutes}m ${seconds}s`;
 }
 exports.formatTime = formatTime;
 

@@ -1,6 +1,6 @@
 ![Tests passed successfully](https://img.shields.io/badge/tests-1%20passed-success)
 ## ✅ <a id="user-content-r0" href="#r0">fixtures/external/jest/jest-react-component-test-results.xml</a>
-**1** tests were completed in **1000ms** with **1** passed, **0** failed and **0** skipped.
+**1** tests were completed in **1s** with **1** passed, **0** failed and **0** skipped.
 |Test suite|Passed|Failed|Skipped|Time|
 |:---|---:|---:|---:|---:|
 |[\<Component /\>](#r0s0)|1✅|||798ms|

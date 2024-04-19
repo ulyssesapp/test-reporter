@@ -40,9 +40,18 @@ export function ellipsis(text: string, maxLength: number): string {
 }
 
 export function formatTime(ms: number): string {
-  if (ms > 1000) {
-    return `${Math.round(ms / 1000)}s`
+  ms = Math.round(ms)
+  if (ms < 1000) {
+    return `${ms}ms`
   }
 
-  return `${Math.round(ms)}ms`
+  var seconds = Math.round(ms / 1000)
+  if (seconds < 60) {
+    return `${seconds}s`
+  }
+
+  var minutes = Math.floor(seconds / 60)
+  seconds = seconds % 60
+
+  return `${minutes}m ${seconds}s`
 }

@@ -1,6 +1,6 @@
 ![Tests failed](https://img.shields.io/badge/tests-793%20passed%2C%201%20failed%2C%2014%20skipped-critical)
 ## ❌ <a id="user-content-r0" href="#r0">fixtures/external/java/pulsar-test-report.xml</a>
-**808** tests were completed in **2127s** with **793** passed, **1** failed and **14** skipped.
+**808** tests were completed in **35m 27s** with **793** passed, **1** failed and **14** skipped.
 |Test suite|Passed|Failed|Skipped|Time|
 |:---|---:|---:|---:|---:|
 |[org.apache.pulsar.AddMissingPatchVersionTest](#r0s0)||1❌|1⚪|116ms|
@@ -11,7 +11,7 @@
 |[org.apache.pulsar.broker.lookup.http.HttpTopicLookupv2Test](#r0s5)|4✅|||2s|
 |[org.apache.pulsar.broker.namespace.NamespaceCreateBundlesTest](#r0s6)|2✅|||33s|
 |[org.apache.pulsar.broker.namespace.NamespaceOwnershipListenerTests](#r0s7)|2✅|||32s|
-|[org.apache.pulsar.broker.namespace.NamespaceServiceTest](#r0s8)|10✅|||75s|
+|[org.apache.pulsar.broker.namespace.NamespaceServiceTest](#r0s8)|10✅|||1m 15s|
 |[org.apache.pulsar.broker.namespace.NamespaceUnloadingTest](#r0s9)|2✅|||14s|
 |[org.apache.pulsar.broker.namespace.OwnerShipCacheForCurrentServerTest](#r0s10)|1✅|||16s|
 |[org.apache.pulsar.broker.namespace.OwnershipCacheTest](#r0s11)|8✅|||16s|
@@ -21,14 +21,14 @@
 |[org.apache.pulsar.broker.PulsarServiceTest](#r0s15)|2✅|||96ms|
 |[org.apache.pulsar.broker.service.MessagePublishBufferThrottleTest](#r0s16)|3✅|||14s|
 |[org.apache.pulsar.broker.service.ReplicatorTest](#r0s17)|22✅|||40s|
-|[org.apache.pulsar.broker.service.TopicOwnerTest](#r0s18)|8✅|||114s|
+|[org.apache.pulsar.broker.service.TopicOwnerTest](#r0s18)|8✅|||1m 54s|
 |[org.apache.pulsar.broker.SLAMonitoringTest](#r0s19)|4✅|||9s|
 |[org.apache.pulsar.broker.stats.BookieClientsStatsGeneratorTest](#r0s20)|2✅|||49ms|
 |[org.apache.pulsar.broker.stats.ConsumerStatsTest](#r0s21)|3✅|||21s|
 |[org.apache.pulsar.broker.stats.ManagedCursorMetricsTest](#r0s22)|1✅|||281ms|
 |[org.apache.pulsar.broker.stats.ManagedLedgerMetricsTest](#r0s23)|1✅|||285ms|
 |[org.apache.pulsar.broker.stats.prometheus.AggregatedNamespaceStatsTest](#r0s24)|1✅|||40ms|
-|[org.apache.pulsar.broker.stats.PrometheusMetricsTest](#r0s25)|15✅|||83s|
+|[org.apache.pulsar.broker.stats.PrometheusMetricsTest](#r0s25)|15✅|||1m 23s|
 |[org.apache.pulsar.broker.stats.SubscriptionStatsTest](#r0s26)|2✅|||2s|
 |[org.apache.pulsar.broker.systopic.NamespaceEventsSystemTopicServiceTest](#r0s27)|1✅|||1s|
 |[org.apache.pulsar.broker.transaction.buffer.InMemTransactionBufferReaderTest](#r0s28)|3✅|||28ms|
@@ -47,7 +47,7 @@
 |[org.apache.pulsar.client.impl.BatchMessageIdImplSerializationTest](#r0s41)|4✅|||30ms|
 |[org.apache.pulsar.client.impl.BatchMessageIndexAckDisableTest](#r0s42)|4✅|||14s|
 |[org.apache.pulsar.client.impl.BatchMessageIndexAckTest](#r0s43)|5✅|||44s|
-|[org.apache.pulsar.client.impl.BrokerClientIntegrationTest](#r0s44)|15✅|||148s|
+|[org.apache.pulsar.client.impl.BrokerClientIntegrationTest](#r0s44)|15✅|||2m 28s|
 |[org.apache.pulsar.client.impl.CompactedOutBatchMessageTest](#r0s45)|1✅|||1s|
 |[org.apache.pulsar.client.impl.ConsumerAckResponseTest](#r0s46)|1✅|||549ms|
 |[org.apache.pulsar.client.impl.ConsumerConfigurationTest](#r0s47)|4✅|||12s|
@@ -57,11 +57,11 @@
 |[org.apache.pulsar.client.impl.KeyStoreTlsProducerConsumerTestWithoutAuth](#r0s51)|3✅|||8s|
 |[org.apache.pulsar.client.impl.KeyStoreTlsTest](#r0s52)|1✅|||183ms|
 |[org.apache.pulsar.client.impl.MessageChecksumTest](#r0s53)|3✅|||47s|
-|[org.apache.pulsar.client.impl.MessageChunkingTest](#r0s54)|8✅||1⚪|73s|
+|[org.apache.pulsar.client.impl.MessageChunkingTest](#r0s54)|8✅||1⚪|1m 13s|
 |[org.apache.pulsar.client.impl.MessageParserTest](#r0s55)|2✅|||5s|
 |[org.apache.pulsar.client.impl.MultiTopicsReaderTest](#r0s56)|8✅|||35s|
 |[org.apache.pulsar.client.impl.NegativeAcksTest](#r0s57)|32✅|||11s|
-|[org.apache.pulsar.client.impl.PatternTopicsConsumerImplTest](#r0s58)|11✅|||63s|
+|[org.apache.pulsar.client.impl.PatternTopicsConsumerImplTest](#r0s58)|11✅|||1m 3s|
 |[org.apache.pulsar.client.impl.PerMessageUnAcknowledgedRedeliveryTest](#r0s59)|5✅|||34s|
 |[org.apache.pulsar.client.impl.PulsarMultiHostClientTest](#r0s60)|3✅|||15s|
 |[org.apache.pulsar.client.impl.RawMessageSerDeserTest](#r0s61)|1✅|||10ms|
@@ -69,7 +69,7 @@
 |[org.apache.pulsar.client.impl.SequenceIdWithErrorTest](#r0s63)|3✅||2⚪|18s|
 |[org.apache.pulsar.client.impl.TopicDoesNotExistsTest](#r0s64)|2✅|||4s|
 |[org.apache.pulsar.client.impl.TopicFromMessageTest](#r0s65)|5✅|||14s|
-|[org.apache.pulsar.client.impl.TopicsConsumerImplTest](#r0s66)|17✅|||133s|
+|[org.apache.pulsar.client.impl.TopicsConsumerImplTest](#r0s66)|17✅|||2m 13s|
 |[org.apache.pulsar.client.impl.UnAcknowledgedMessagesTimeoutTest](#r0s67)|7✅|||44s|
 |[org.apache.pulsar.client.impl.ZeroQueueSizeTest](#r0s68)|14✅|||16s|
 |[org.apache.pulsar.common.api.raw.RawMessageImplTest](#r0s69)|1✅|||316ms|
@@ -162,7 +162,7 @@
 |[org.apache.pulsar.proxy.server.SuperUserAuthedAdminProxyHandlerTest](#r0s156)|3✅|||8s|
 |[org.apache.pulsar.proxy.server.UnauthedAdminProxyHandlerTest](#r0s157)|2✅|||114ms|
 |[org.apache.pulsar.PulsarBrokerStarterTest](#r0s158)|9✅|||591ms|
-|[org.apache.pulsar.schema.compatibility.SchemaCompatibilityCheckTest](#r0s159)|23✅|||107s|
+|[org.apache.pulsar.schema.compatibility.SchemaCompatibilityCheckTest](#r0s159)|23✅|||1m 47s|
 |[org.apache.pulsar.schema.PartitionedTopicSchemaTest](#r0s160)|1✅|||29s|
 |[org.apache.pulsar.schema.SchemaTest](#r0s161)|3✅|||31s|
 |[org.apache.pulsar.stats.client.PulsarBrokerStatsClientTest](#r0s162)|2✅|||41s|

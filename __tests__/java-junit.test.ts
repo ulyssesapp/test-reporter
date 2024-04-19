@@ -3,6 +3,7 @@ import * as path from 'path'
 
 import {JavaJunitParser} from '../src/parsers/java-junit/java-junit-parser'
 import {ParseOptions} from '../src/test-parser'
+import {TestRunResult} from '../src/test-results'
 import {getReport, ReportOptions} from '../src/report/get-report'
 import {normalizeFilePath} from '../src/utils/path-utils'
 
@@ -92,22 +93,28 @@ describe('java-junit tests', () => {
   })
 
   it('does not create reports with emtpty gorups', async () => {
-    const fixturePath = path.join(__dirname, 'fixtures', 'empty-groups.xml')
-    const filePath = normalizeFilePath(path.relative(__dirname, fixturePath))
-    const outputPath = path.join(__dirname, '__outputs__', 'empty-groups.md')
-    const fileContent = fs.readFileSync(fixturePath, {encoding: 'utf8'})
+    const fixturePaths: string[] = [
+      path.join(__dirname, 'fixtures', 'empty-groups.xml'),
+      path.join(__dirname, 'fixtures', 'successful.xml')
+    ]
 
     const trackedFiles: string[] = []
     const opts: ParseOptions = {
       parseErrors: true,
       trackedFiles
     }
-
     const parser = new JavaJunitParser(opts)
-    const result = await parser.parse(filePath, fileContent)
-    expect(result.result === 'failed')
-    expect(result.failed === 1)
 
+    var results: TestRunResult[] = []
+    for (const fixturePath of fixturePaths) {
+      const filePath = normalizeFilePath(path.relative(__dirname, fixturePath))
+      const fileContent = fs.readFileSync(fixturePath, {encoding: 'utf8'})
+
+      const result = await parser.parse(filePath, fileContent)
+      results.push(result)
+    }
+
+    const outputPath = path.join(__dirname, '__outputs__', 'empty-groups.md')
     const reportOpts: ReportOptions = {
       listSuites: 'failed',
       listTests: 'failed',
@@ -115,7 +122,7 @@ describe('java-junit tests', () => {
       onlySummary: false
     }
 
-    const report = getReport([result], reportOpts)
+    const report = getReport(results, reportOpts)
     fs.mkdirSync(path.dirname(outputPath), {recursive: true})
     fs.writeFileSync(outputPath, report)
   })

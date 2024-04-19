@@ -140,7 +140,7 @@ function getTestRunsReport(testRuns: TestRunResult[], options: ReportOptions): s
       const time = formatTime(tr.time)
       const name = tr.path
       const addr = options.baseUrl + makeRunSlug(runIndex).link
-      const nameLink = link(name, addr)
+      const nameLink = options.listSuites === 'failed' && tr.result !== 'failed' ? name : link(name, addr)
       const passed = tr.passed > 0 ? `${tr.passed}${Icon.success}` : ''
       const failed = tr.failed > 0 ? `${tr.failed}${Icon.fail}` : ''
       const skipped = tr.skipped > 0 ? `${tr.skipped}${Icon.skip}` : ''
@@ -164,6 +164,10 @@ function getTestRunsReport(testRuns: TestRunResult[], options: ReportOptions): s
 
 function getSuitesReport(tr: TestRunResult, runIndex: number, options: ReportOptions): string[] {
   const sections: string[] = []
+
+  if (options.listSuites === 'failed' && tr.result !== 'failed') {
+    return sections
+  }
 
   const trSlug = makeRunSlug(runIndex)
   const nameLink = `<a id="${trSlug.id}" href="${options.baseUrl + trSlug.link}">${tr.path}</a>`

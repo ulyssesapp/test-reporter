@@ -1,4 +1,8 @@
-![Tests failed](https://img.shields.io/badge/tests-122%20passed%2C%206%20failed-critical)
+![Tests failed](https://img.shields.io/badge/tests-244%20passed%2C%206%20failed-critical)
+|Report|Passed|Failed|Skipped|Time|
+|:---|---:|---:|---:|---:|
+|[fixtures/empty-groups.xml](#r0)|122✅|6❌||3m 7s|
+|fixtures/successful.xml|122✅|||3m 7s|
 ## ❌ <a id="user-content-r0" href="#r0">fixtures/empty-groups.xml</a>
 **128** tests were completed in **3m 7s** with **122** passed, **6** failed and **0** skipped.
 |Test suite|Passed|Failed|Skipped|Time|
